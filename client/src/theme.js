@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/materials/styles'
+import { createTheme } from '@mui/material/styles'
 
 export const shades = {
     primary: {
