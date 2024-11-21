@@ -10,10 +10,12 @@ import {
 } from '@mui/icons-material'
 import { useNavigate } from 'react-router-dom'
 import { shades } from '../../theme'
+import { setIsCartOpen } from '../../state/index'
 
 const Navbar = () => {
-  // const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cart)
 
   return (
       <div className='navbar-outer'>
@@ -26,12 +28,25 @@ const Navbar = () => {
             <IconButton sx={{color: 'black'}}>
               <SearchOutlined />
             </IconButton>
+
             <IconButton sx={{color: 'black'}}>
               <PersonOutline />
             </IconButton>
-            <IconButton sx={{color: 'black'}}>
+
+            <Badge  badgeContent={cart.length} 
+                    color='secondary' 
+                    invisible={cart.length === 0} 
+                    sx={{'&MuiBadge-badge' : {
+                      right: 5, 
+                      top: 5, 
+                      padding: '0 4px', 
+                      height: '14px', 
+                      minWidth: '13px'}}}>
+            <IconButton sx={{color: 'black'}} onClick={() => dispatch(setIsCartOpen({}))}>
               <ShoppingBagOutlined />
             </IconButton>
+            </Badge>
+
             <IconButton sx={{color: 'black'}}>
               <MenuOutlined />
             </IconButton>
